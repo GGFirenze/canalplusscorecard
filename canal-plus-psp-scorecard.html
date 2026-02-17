@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📺</text></svg>">
+  <title>Canal+ myCANAL — PSP Engagement Scorecard</title>
+  <script src="https://cdn.amplitude.com/script/c6398db5820c78b28d42d99540ed22ef.js"></script>
+  <script>
+    window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+    window.amplitude.init('c6398db5820c78b28d42d99540ed22ef', {
+      fetchRemoteConfig: true,
+      autocapture: {
+        attribution: true,
+        sessions: false,
+        pageViews: true,
+        formInteractions: false,
+        fileDownloads: false,
+        elementInteractions: false,
+        frustrationInteractions: true
+      }
+    });
+  </script>
+  <style>
+    :root {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #5a5a7a;
+      --border: #e2e4ea;
+      --accent: #4a3aff;
+      --accent-light: #eceaff;
+      --green: #0d9f6e;
+      --green-bg: #eafaf4;
+      --orange: #d97706;
+      --orange-bg: #fef3e2;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d2b55 100%);
+      color: white;
+      padding: 48px 0 40px;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .header .subtitle {
+      font-size: 16px;
+      opacity: 0.75;
+      font-weight: 400;
+    }
+
+    .header-meta {
+      display: flex;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .header-meta .tag {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Navigation */
+    .nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .nav-inner {
+      display: flex;
+      gap: 4px;
+      padding: 0;
+      overflow-x: auto;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 14px 16px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .nav a:hover, .nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* Sections */
+    section {
+      padding: 48px 0;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    /* Intro Card */
+    .intro-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .intro-card p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .intro-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* KPI Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: box-shadow 0.2s;
+    }
+
+    .kpi-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .kpi-card .kpi-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .kpi-card .kpi-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .kpi-card .kpi-detail {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    .kpi-card.green { border-top: 3px solid var(--green); }
+    .kpi-card.orange { border-top: 3px solid var(--orange); }
+    .kpi-card.red { border-top: 3px solid var(--red); }
+
+    /* Highlight Cards */
+    .highlight-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .highlight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .highlight-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
+
+    .highlight-icon.green-bg { background: var(--green-bg); }
+    .highlight-icon.orange-bg { background: var(--orange-bg); }
+    .highlight-icon.red-bg { background: var(--red-bg); }
+    .highlight-icon.blue-bg { background: var(--blue-bg); }
+
+    .highlight-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .highlight-content p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* Summary Grid */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .summary-grid .sg-header {
+      background: #2563eb;
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .summary-grid .sg-cell {
+      padding: 16px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .summary-grid .sg-cell:nth-child(5n) {
+      border-right: none;
+    }
+
+    .summary-grid .sg-row-label {
+      background: #f1f5f9;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 14px 16px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .sg-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+      flex-shrink: 0;
+    }
+
+    .sg-indicator.green { background: var(--green); }
+    .sg-indicator.orange { background: var(--orange); }
+    .sg-indicator.red { background: var(--red); }
+
+    .sg-metric {
+      font-weight: 700;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .sg-detail {
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .data-table thead th {
+      background: #1a1a2e;
+      color: white;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 14px 16px;
+      text-align: left;
+    }
+
+    .data-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .data-table tbody tr:hover {
+      background: #fafbfc;
+    }
+
+    .data-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .data-table td {
+      padding: 14px 16px;
+      vertical-align: top;
+    }
+
+    .data-table .category-cell {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .data-table .metric-cell {
+      font-weight: 500;
+    }
+
+    .data-table .value-cell {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge.green { background: var(--green-bg); color: var(--green); }
+    .badge.orange { background: var(--orange-bg); color: var(--orange); }
+    .badge.red { background: var(--red-bg); color: var(--red); }
+
+    /* Status badges for workstream tracker */
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-badge.delivered { background: var(--green-bg); color: var(--green); }
+    .status-badge.in-progress { background: var(--blue-bg); color: var(--blue); }
+    .status-badge.recommended { background: var(--orange-bg); color: var(--orange); }
+
+    /* Personas Section */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 16px;
+    }
+
+    .persona-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .persona-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .persona-card.high::before { background: var(--green); }
+    .persona-card.low::before { background: var(--red); }
+
+    .persona-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .persona-name {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .persona-rate {
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .persona-rate.high { color: var(--green); }
+    .persona-rate.low { color: var(--red); }
+
+    .persona-users {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .persona-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .persona-insight {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Next Steps */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-group {
+      margin-bottom: 32px;
+    }
+
+    .timeline-group-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .timeline-group-header::before {
+      content: '';
+      position: absolute;
+      left: -27px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--accent-light);
+    }
+
+    .timeline-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-item h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timeline-item p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .timeline-item .impact {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--green-bg);
+      padding: 2px 10px;
+      border-radius: 10px;
+    }
+
+    /* Account Health - Internal */
+    .health-section {
+      background: #fffbeb;
+      border: 1px dashed #d97706;
+      border-radius: 12px;
+      padding: 28px 32px;
+    }
+
+    .health-section .internal-badge {
+      display: inline-block;
+      background: #d97706;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+
+    .health-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .health-item {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid #f3e8c8;
+    }
+
+    .health-item .health-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .health-item .health-status {
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .health-item .health-note {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+      .summary-grid .sg-header {
+        display: none;
+      }
+      .persona-grid {
+        grid-template-columns: 1fr;
+      }
+      .header-meta {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .nav { display: none; }
+      section { break-inside: avoid; }
+      .header { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="container">
+      <h1>Canal+ myCANAL — PSP Engagement Scorecard</h1>
+      <div class="subtitle">Professional Services Partnership | Executive Summary</div>
+      <div class="header-meta">
+        <span class="tag">Période: 2025 + Q1 2026</span>
+        <span class="tag">Généré le 17 février 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#about">À propos</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#summary">Vue d'ensemble</a>
+      <a href="#metrics">Métriques détaillées</a>
+      <a href="#personas">Personas</a>
+      <a href="#workstreams">Workstreams</a>
+      <a href="#next-steps">Prochaines étapes</a>
+    </div>
+  </nav>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">Contexte</div>
+      <h2>À propos de ce dashboard</h2>
+      <div class="intro-card">
+        <p>Ce tableau de bord est le fruit de <strong>3 mois de collaboration</strong> entre Amplitude et vos équipes. Il a été conçu pour synthétiser les principaux enseignements issus de notre travail commun jusqu'à présent, offrant à la fois une <strong>vue rétrospective sur 2025</strong> et un <strong>premier regard sur les tendances émergentes de 2026</strong>.</p>
+        <p>Par souci de clarté et de concision, ce dashboard se concentre sur les insights clés à fort impact business. Le détail des travaux réalisés, les chantiers en cours, les sujets ouverts (notamment l'optimisation de l'AB Testing) ainsi que les échanges en cours avec vos équipes ne sont pas couverts ici, mais sont consultables dans <a href="https://app.amplitude.com/analytics/canalplus/space/xn7kqp64/all" target="_blank" style="color: var(--accent); font-weight: 600;">l'espace Amplitude dédié</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Highlights -->
+  <section id="highlights">
+    <div class="container">
+      <div class="section-label">Executive Highlights</div>
+      <h2>🎯 Vue d'ensemble</h2>
+
+      <!-- Top KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi-card green">
+          <div class="kpi-label">Revenus Abonnements 2025</div>
+          <div class="kpi-value">17,0 M€</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-label">Revenus VOD 2025</div>
+          <div class="kpi-value">26,2 M€</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-label">Conversion Page VOD 2025</div>
+          <div class="kpi-value">34,1%</div>
+          <div class="kpi-detail">Page VOD → Achat</div>
+        </div>
+      </div>
+
+      <!-- Insight Cards -->
+      <div class="highlight-grid">
+        <div class="highlight-card">
+          <div class="highlight-icon green-bg">🔥</div>
+          <div class="highlight-content">
+            <h4>51,7% des Prospects du cluster "Fidèles du Live TV" sont également abonnés — ~2× la moyenne globale des prospects.</h4>
+            <p>L'engagement sur le contenu live est fortement corrélé à l'abonnement.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon green-bg">🪙</div>
+          <div class="highlight-content">
+            <h4>+39 pts de rétention à 30 jours pour les acheteurs VOD (50,9% vs 11,9%).</h4>
+            <p>La VOD n'est pas juste un revenu transactionnel, c'est un levier de fidélisation.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon red-bg">⚙️</div>
+          <div class="highlight-content">
+            <h4>~173K€/an de revenus potentiellement perdus en 2025 à cause d'erreurs techniques au paiement.</h4>
+            <p>Chaque mois non corrigé coûte ~14K€ en conversions manquées.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon red-bg">⚠️</div>
+          <div class="highlight-content">
+            <h4>5 258 prospects du cluster "Bloqués par des erreurs" rencontrent ~5× plus d'erreurs que la moyenne — seulement 11,5% sont également abonnés.</h4>
+            <p>L'intention est forte (2ème plus haut taux de lancement du player), mais les frictions techniques freinent l'abonnement.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon orange-bg">⏳</div>
+          <div class="highlight-content">
+            <h4>+30% de sessions avant abonnement en 2026 vs 2025 (41 vs 34 sessions).</h4>
+            <p>Le parcours de conversion se complexifie, ce qui présente une opportunité d'optimisation onboarding.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon orange-bg">🚨</div>
+          <div class="highlight-content">
+            <h4>~10 000 prospects "chercheurs perdus": forte intention, mais faible propension à l'abonnement: 13,6% seulement.</h4>
+            <p>Améliorer la pertinence de la recherche pourrait débloquer ce segment rapidement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary Grid -->
+  <section id="summary">
+    <div class="container">
+      <div class="section-label">Scorecard</div>
+      <h2>Summary Grid</h2>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Acquisition</th>
+            <th>Monétisation</th>
+            <th>Rétention</th>
+            <th>Conversion</th>
+            <th>Santé Technique</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="category-cell">KPIs clés</td>
+            <td>
+              <span class="badge green">●</span><br>
+              SEO = 3ème canal d'acquisition<br>
+              <span style="color: var(--text-secondary); font-size: 12px;">€341K rev. 90 derniers jours</span>
+            </td>
+            <td>
+              <span class="badge green">●</span><br>
+              26,2M€ revenus VOD<br>
+              34,1% conversion page VOD
+            </td>
+            <td>
+              <span class="badge orange">●</span><br>
+              12,6% rétention 3 mois prospects FR<br>
+              <span style="color: var(--text-secondary); font-size: 12px;">+39pts avec achat VOD</span>
+            </td>
+            <td>
+              <span class="badge orange">●</span><br>
+              17,0M€ revenus abo 2025<br>
+              26,5% propension globale
+            </td>
+            <td>
+              <span class="badge red">●</span><br>
+              ~173K€/an revenus perdus<br>
+              <span style="color: var(--text-secondary); font-size: 12px;">Erreurs paiement 2025</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="category-cell">Tendance 2026</td>
+            <td>Top genres: Sport, Cinéma, Séries, Divertissement, Actualités</td>
+            <td>VOD = accélérateur de rétention confirmé</td>
+            <td>VOD buyers: 50,9% vs non-buyers: 11,9%</td>
+            <td>Cycle allongé: 41 sessions (+30% vs 2025)</td>
+            <td>Jan 2026: ~11,6K/mois<br><span style="color: var(--green); font-size: 12px;">Légère amélioration vs déc. 2025</span></td>
+          </tr>
+          <tr>
+            <td class="category-cell">Commentaire</td>
+            <td style="color: var(--text-secondary); font-size: 13px;">—</td>
+            <td style="color: var(--text-secondary); font-size: 13px;">Levier de fidélisation sous-exploité</td>
+            <td style="color: var(--text-secondary); font-size: 13px;">—</td>
+            <td style="color: var(--text-secondary); font-size: 13px;">~10K "chercheurs perdus" à 13,6% — opportunité quick-win</td>
+            <td style="color: var(--text-secondary); font-size: 13px;">5 258 prospects bloqués (~5× la moyenne)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Detailed Metrics -->
+  <section id="metrics">
+    <div class="container">
+      <div class="section-label">Métriques</div>
+      <h2>Detailed Metrics</h2>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Catégorie</th>
+            <th>Métrique</th>
+            <th>2025</th>
+            <th>2026 YTD</th>
+            <th>Delta</th>
+            <th>Signal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="category-cell" rowspan="3">Monétisation</td>
+            <td class="metric-cell">Revenus abonnements</td>
+            <td class="value-cell">17,0M€</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="badge green">● Sain</span></td>
+          </tr>
+          <tr>
+            <td class="metric-cell">Revenus VOD</td>
+            <td class="value-cell">26,2M€</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="badge green">● Sain</span></td>
+          </tr>
+          <tr>
+            <td class="metric-cell">Conversion page VOD → achat</td>
+            <td class="value-cell">34,1%</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="badge green">● Sain</span></td>
+          </tr>
+          <tr>
+            <td class="category-cell" rowspan="3">Rétention</td>
+            <td class="metric-cell">Rétention 30j sans VOD</td>
+            <td class="value-cell">11,9%</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="badge red">● Bas</span></td>
+          </tr>
+          <tr>
+            <td class="metric-cell">Rétention 30j avec VOD</td>
+            <td class="value-cell">50,9%</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="badge green">● Sain</span></td>
+          </tr>
+          <tr>
+            <td class="metric-cell">Delta rétention VOD</td>
+            <td class="value-cell">+39 pts</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="badge green">● Sain</span></td>
+          </tr>
+          <tr>
+            <td class="category-cell" rowspan="4">Conversion</td>
+            <td class="metric-cell">Sessions avant abonnement</td>
+            <td class="value-cell">34</td>
+            <td class="value-cell">41</td>
+            <td class="value-cell" style="color: var(--red);">+30%</td>
+            <td><span class="badge red">● Alerte</span></td>
+          </tr>
+          <tr>
+            <td class="metric-cell">Propension globale prospect→abonné</td>
+            <td class="value-cell">26,5%</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="badge orange">● À surveiller</span></td>
+          </tr>
+          <tr>
+            <td class="metric-cell">Cluster "Fidèles Live TV" — abonnés</td>
+            <td class="value-cell">51,7%</td>
+            <td>—</td>
+            <td style="color: var(--green);">~2× moy.</td>
+            <td><span class="badge green">● Sain</span></td>
+          </tr>
+          <tr>
+            <td class="metric-cell">Cluster "Chercheurs perdus" — abonnés</td>
+            <td class="value-cell">13,6%</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="badge red">● Bas</span></td>
+          </tr>
+          <tr>
+            <td class="category-cell" rowspan="3">Impact Technique</td>
+            <td class="metric-cell">Revenus perdus (erreurs paiement) /mois</td>
+            <td class="value-cell">~14,4K€ <span style="font-weight: 400; color: var(--text-secondary);">(déc.)</span></td>
+            <td class="value-cell">~11,6K€ <span style="font-weight: 400; color: var(--text-secondary);">(jan.)</span></td>
+            <td style="color: var(--green);">-19%</td>
+            <td><span class="badge orange">● À surveiller</span></td>
+          </tr>
+          <tr>
+            <td class="metric-cell">Impact annuel estimé</td>
+            <td class="value-cell">~173K€</td>
+            <td class="value-cell">~139K€</td>
+            <td style="color: var(--green);">-20%</td>
+            <td><span class="badge orange">● À surveiller</span></td>
+          </tr>
+          <tr>
+            <td class="metric-cell">Erreurs moy. Cluster 4 vs global</td>
+            <td class="value-cell">28,27 vs 5,82</td>
+            <td>—</td>
+            <td style="color: var(--red);">~5×</td>
+            <td><span class="badge red">● Alerte</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Personas -->
+  <section id="personas">
+    <div class="container">
+      <div class="section-label">Analyse Comportementale</div>
+      <h2>Au-delà du reporting: Personas Comportementaux</h2>
+      <p style="color: var(--text-secondary); font-size: 15px; margin-bottom: 8px;">L'analyse de <strong>57 767 prospects français</strong> ayant consommé du contenu au cours des 30 derniers jours révèle <strong>9 personas comportementaux distincts</strong>. Le pourcentage indique la part d'utilisateurs du cluster qui sont également abonnés.</p>
+      <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 28px;">Cohort A: nouveaux prospects ayant lu du contenu (30 derniers jours) · Cohort B: abonnés français (30 derniers jours)</p>
+
+      <h3 style="color: var(--green);">🔝 Prospects les plus prometteurs</h3>
+      <div class="persona-grid" style="margin-bottom: 32px;">
+        <div class="persona-card high">
+          <div class="persona-header">
+            <div>
+              <div class="persona-name">🟣 Cluster 2: "Fidèles du Live TV"</div>
+              <div class="persona-users">10 321 utilisateurs (17,9% du total)</div>
+            </div>
+            <div class="persona-rate high">51,7%</div>
+          </div>
+          <div class="persona-desc">
+            Consomment du contenu live 4,5× plus que la moyenne (60,3 vs 13,35 events « play live ») et utilisent massivement la reprise depuis le début (6,84 vs 2,02). Presque aucun intérêt pour la VOD (0,10).
+          </div>
+          <div class="persona-insight">💡 La TV en direct est la porte d'entrée vers l'abonnement.</div>
+        </div>
+        <div class="persona-card high">
+          <div class="persona-header">
+            <div>
+              <div class="persona-name">🔵 Cluster 7: "Power Users multi-contenus"</div>
+              <div class="persona-users">3 717 utilisateurs (6,43% du total)</div>
+            </div>
+            <div class="persona-rate high">48,4%</div>
+          </div>
+          <div class="persona-desc">
+            Engagement équilibré: live (20,28), replay (9,75), playlists les plus élevées (1,71). Le plus haut nombre de pages vues (308,88) et usage intensif du PIP (~9,3× la moyenne). Personnalisent activement leur expérience.
+          </div>
+          <div class="persona-insight">💡 Ceux qui explorent et personnalisent s'abonnent à près de 50%.</div>
+        </div>
+        <div class="persona-card high">
+          <div class="persona-header">
+            <div>
+              <div class="persona-name">🟢 Cluster 1: "Amateurs de replay"</div>
+              <div class="persona-users">12 649 utilisateurs (21,9% du total) — le plus grand cluster</div>
+            </div>
+            <div class="persona-rate high">34,9%</div>
+          </div>
+          <div class="persona-desc">
+            Préfèrent le replay à la TV en direct: « play replay » 3,5× plus que la moyenne (49,42 vs 13,95) mais peu de live (5,13 vs 13,35).
+          </div>
+          <div class="persona-insight">💡 Le replay est un levier de conversion puissant — l'abonnement reste attractif pour le contenu à la demande.</div>
+        </div>
+      </div>
+
+      <h3 style="color: var(--red);">🆘 Segments à faible propension</h3>
+      <div class="persona-grid">
+        <div class="persona-card low">
+          <div class="persona-header">
+            <div>
+              <div class="persona-name">🔵 Cluster 3: "Chercheurs perdus"</div>
+              <div class="persona-users">9 835 utilisateurs (17,0% du total)</div>
+            </div>
+            <div class="persona-rate low">13,6%</div>
+          </div>
+          <div class="persona-desc">
+            Recherches 2,2× supérieures à la moyenne (9,94 vs 4,53), mais consommation quasi nulle: live 0,19, replay 0,58. Naviguent beaucoup (215,42 pages vues) sans trouver.
+          </div>
+          <div class="persona-insight">💡 ~10 000 utilisateurs cherchent du contenu sans le regarder. Échec de découverte.</div>
+        </div>
+        <div class="persona-card low">
+          <div class="persona-header">
+            <div>
+              <div class="persona-name">🟠 Cluster 4: "Bloqués par des erreurs"</div>
+              <div class="persona-users">5 258 utilisateurs (9,10% du total)</div>
+            </div>
+            <div class="persona-rate low">11,5%</div>
+          </div>
+          <div class="persona-desc">
+            Erreurs ~5× au-dessus de la moyenne (28,27 vs 5,82). L'intention est forte: 2ème plus haut taux de lancement du player (77,55). Empêchés de consommer par des frictions techniques.
+          </div>
+          <div class="persona-insight">💡 Ces utilisateurs ne sont pas désengagés, ils sont frustrés. Corriger = conversion.</div>
+        </div>
+        <div class="persona-card low">
+          <div class="persona-header">
+            <div>
+              <div class="persona-name">🟣 Cluster 6: "Acheteurs VOD à l'unité"</div>
+              <div class="persona-users">4 260 utilisateurs (7,37% du total)</div>
+            </div>
+            <div class="persona-rate low">2,98%</div>
+          </div>
+          <div class="persona-desc">
+            VOD 12× plus que la moyenne (12,53 vs 0,99), « pay VOD » 4,4× la moyenne. Très peu de live (0,17) ou replay (0,42).
+          </div>
+          <div class="persona-insight">💡 Valorisent des contenus spécifiques, pas le catalogue. Modèle transactionnel préféré.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workstreams -->
+  <section id="workstreams">
+    <div class="container">
+      <div class="section-label">Workstreams</div>
+      <h2>PSP Workstream Tracker</h2>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Workstream</th>
+            <th>Statut</th>
+            <th>Détails</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">Executive Dashboard</td>
+            <td><span class="status-badge delivered">Delivered</span></td>
+            <td>Dashboard de synthèse couvrant acquisition, VOD, abonnements, erreurs techniques et Personas. Présenté à Eglantine Leclabart.</td>
+          </tr>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">Analyse Personas (clustering)</td>
+            <td><span class="status-badge delivered">Delivered</span></td>
+            <td>9 clusters comportementaux identifiés sur 57 767 prospects FR. Principaux profils nommés et documentés. Cohorts exportables.</td>
+          </tr>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">Analyse impact erreurs techniques</td>
+            <td><span class="status-badge delivered">Delivered</span></td>
+            <td>Méthodologie de quantification des revenus perdus. Calcul déc. 2025 + jan. 2026. Suivi mensuel recommandé.</td>
+          </tr>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">Analyse rétention VOD</td>
+            <td><span class="status-badge delivered">Delivered</span></td>
+            <td>Comparaison rétention 30j avec/sans achat VOD. Delta de +39 pts identifié.</td>
+          </tr>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">Attribution canaux d'acquisition</td>
+            <td><span class="status-badge delivered">Delivered</span></td>
+            <td>Attribution last-touch sur événements transactionnels. SEO = 3ème canal, €341K sur 90 jours.</td>
+          </tr>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">Optimisation AB Testing</td>
+            <td><span class="status-badge in-progress">In Progress</span></td>
+            <td>Échanges en cours avec les équipes Canal+. Détails dans l'espace Amplitude dédié.</td>
+          </tr>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">Correction erreurs checkout</td>
+            <td><span class="status-badge recommended">Recommended</span></td>
+            <td>ROI estimé: ~€173K/an. Recommandation formalisée dans le dashboard.</td>
+          </tr>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">Optimisation pertinence recherche</td>
+            <td><span class="status-badge recommended">Recommended</span></td>
+            <td>~10K prospects "chercheurs perdus" identifiés. Proposition de croiser termes de recherche et catalogue.</td>
+          </tr>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">A/B test exposition live en onboarding</td>
+            <td><span class="status-badge recommended">Recommended</span></td>
+            <td>Hypothèse: exposer les prospects au live dès la 1ère session augmente la propension à l'abonnement. À valider via Amplitude Experiment.</td>
+          </tr>
+          <tr>
+            <td class="metric-cell" style="font-weight: 700;">Nudge premier achat VOD</td>
+            <td><span class="status-badge recommended">Recommended</span></td>
+            <td>Hypothèse: promotion VOD dans les 7 premiers jours améliore la rétention. À tester.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Next Steps -->
+  <section id="next-steps">
+    <div class="container">
+      <div class="section-label">Recommandations</div>
+      <h2>🔮 Prochaines étapes recommandées</h2>
+
+      <div class="timeline">
+        <div class="timeline-group">
+          <div class="timeline-group-header">Court terme (0–4 semaines)</div>
+          <div class="timeline-item">
+            <h4>1. Corriger les erreurs techniques au checkout</h4>
+            <p>Mettre en place un suivi mensuel dans Amplitude pour mesurer l'évolution du taux d'erreur et quantifier le gain post-correction.</p>
+            <span class="impact">Impact estimé: ~€173K/an</span>
+          </div>
+          <div class="timeline-item">
+            <h4>2. Remplir les descriptions des clusters Personas et créer les cohorts associées</h4>
+            <p>Exporter les clusters clés en tant que cohorts comportementales dans Amplitude afin de les activer dans vos outils marketing (CRM, push, email).</p>
+          </div>
+          <div class="timeline-item">
+            <h4>3. Auditer la pertinence des résultats de recherche</h4>
+            <p>Les ~10 000 "chercheurs perdus" représentent un segment à fort potentiel. Croiser leurs termes de recherche les plus fréquents avec le catalogue disponible.</p>
+            <span class="impact">~10K prospects à 13,6% — quick win</span>
+          </div>
+        </div>
+
+        <div class="timeline-group">
+          <div class="timeline-group-header">Moyen terme (1–3 mois)</div>
+          <div class="timeline-item">
+            <h4>4. Tester l'exposition au contenu live dès l'onboarding</h4>
+            <p>Concevoir un A/B test (via Amplitude Experiment) proposant du contenu live dès la première session pour mesurer l'impact sur la propension à l'abonnement.</p>
+            <span class="impact">51,7% des prospects live sont abonnés</span>
+          </div>
+          <div class="timeline-item">
+            <h4>5. Encourager le premier achat VOD via des nudges ciblés</h4>
+            <p>Offrir une promotion VOD aux nouveaux utilisateurs dans leurs 7 premiers jours et mesurer la rétention à 30 jours.</p>
+            <span class="impact">+39 pts de rétention</span>
+          </div>
+          <div class="timeline-item">
+            <h4>6. Réduire le cycle de décision avant abonnement</h4>
+            <p>Analyser les 41 sessions pré-abonnement en 2026 pour identifier les points de friction. Concevoir des interventions ciblées aux sessions clés du parcours.</p>
+            <span class="impact">+30% cycle en 2026 — onboarding à optimiser</span>
+          </div>
+        </div>
+
+        <div class="timeline-group">
+          <div class="timeline-group-header">En continu</div>
+          <div class="timeline-item">
+            <h4>7. Suivi mensuel du tableau de bord</h4>
+            <p>Transformer ce dashboard en outil de pilotage récurrent: suivre l'évolution des revenus perdus par erreurs, du cycle de conversion, et de la propension à l'abonnement par cluster.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>8. Approfondir l'analyse Personas par plateforme et par marché</h4>
+            <p>Étendre le clustering comportemental aux autres devices (apps mobiles, TV connectée) et marchés pour identifier si les mêmes profils se retrouvent — ou si de nouveaux segments émergent.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>9. Revues stratégiques régulières avec l'équipe Amplitude</h4>
+            <p>Maintenir une cadence régulière de revues analytiques permet d'identifier de nouvelles opportunités, d'affiner les personas au fil du temps, et d'aligner la stratégie data avec l'évolution des priorités business.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="container">
+      Canal+ myCANAL — PSP Engagement Scorecard · Generated February 17, 2026 · Amplitude Professional Services
+    </div>
+  </div>
+
+</body>
+</html>
