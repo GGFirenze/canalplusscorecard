@@ -80,9 +80,10 @@
 
     .header-meta {
       display: flex;
-      gap: 24px;
+      gap: 12px;
       margin-top: 20px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .header-meta .tag {
@@ -92,6 +93,16 @@
       border-radius: 20px;
       font-size: 13px;
       font-weight: 500;
+    }
+
+    .header-meta a.tag {
+      text-decoration: none;
+      color: white;
+      transition: background 0.2s;
+    }
+
+    .header-meta a.tag:hover {
+      background: rgba(255,255,255,0.22);
     }
 
     /* Navigation */
@@ -158,25 +169,6 @@
       color: var(--text);
     }
 
-    /* Intro Card */
-    .intro-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 32px;
-      border-left: 4px solid var(--accent);
-    }
-
-    .intro-card p {
-      color: var(--text-secondary);
-      font-size: 15px;
-      margin-bottom: 12px;
-    }
-
-    .intro-card p:last-child {
-      margin-bottom: 0;
-    }
-
     /* KPI Cards */
     .kpi-grid {
       display: grid;
@@ -227,7 +219,7 @@
     .highlight-grid {
       display: grid;
       gap: 16px;
-      margin-top: 24px;
+      margin-bottom: 40px;
     }
 
     .highlight-card {
@@ -265,73 +257,6 @@
     .highlight-content p {
       font-size: 14px;
       color: var(--text-secondary);
-    }
-
-    /* Summary Grid */
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      background: var(--surface);
-    }
-
-    .summary-grid .sg-header {
-      background: #2563eb;
-      color: white;
-      font-weight: 700;
-      font-size: 13px;
-      padding: 14px 16px;
-      text-align: center;
-    }
-
-    .summary-grid .sg-cell {
-      padding: 16px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      font-size: 13px;
-    }
-
-    .summary-grid .sg-cell:nth-child(5n) {
-      border-right: none;
-    }
-
-    .summary-grid .sg-row-label {
-      background: #f1f5f9;
-      font-weight: 700;
-      font-size: 12px;
-      padding: 14px 16px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-    }
-
-    .sg-indicator {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      margin-right: 6px;
-      flex-shrink: 0;
-    }
-
-    .sg-indicator.green { background: var(--green); }
-    .sg-indicator.orange { background: var(--orange); }
-    .sg-indicator.red { background: var(--red); }
-
-    .sg-metric {
-      font-weight: 700;
-      font-size: 14px;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .sg-detail {
-      color: var(--text-secondary);
-      font-size: 12px;
     }
 
     /* Tables */
@@ -558,59 +483,16 @@
       border-radius: 10px;
     }
 
-    /* Account Health - Internal */
-    .health-section {
-      background: #fffbeb;
-      border: 1px dashed #d97706;
-      border-radius: 12px;
-      padding: 28px 32px;
-    }
-
-    .health-section .internal-badge {
-      display: inline-block;
-      background: #d97706;
-      color: white;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 3px 10px;
-      border-radius: 10px;
-      margin-bottom: 16px;
-    }
-
-    .health-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .health-item {
-      background: white;
-      border-radius: 8px;
-      padding: 16px;
-      border: 1px solid #f3e8c8;
-    }
-
-    .health-item .health-label {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      margin-bottom: 6px;
-    }
-
-    .health-item .health-status {
+    /* Subsection divider */
+    .subsection-title {
       font-size: 14px;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-
-    .health-item .health-note {
-      font-size: 12px;
       color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
     }
 
     /* Footer */
@@ -624,12 +506,6 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .summary-grid {
-        grid-template-columns: 1fr;
-      }
-      .summary-grid .sg-header {
-        display: none;
-      }
       .persona-grid {
         grid-template-columns: 1fr;
       }
@@ -656,7 +532,8 @@
       <div class="subtitle">Professional Services Partnership | Executive Summary</div>
       <div class="header-meta">
         <span class="tag">Période: 2025 + Q1 2026</span>
-        <span class="tag">Généré le 17 février 2026</span>
+        <span class="tag">Généré en février 2026</span>
+        <a class="tag" href="https://app.amplitude.com/analytics/canalplus/space/xn7kqp64/all" target="_blank">Espace Amplitude dédié ↗</a>
       </div>
     </div>
   </div>
@@ -664,33 +541,18 @@
   <!-- Navigation -->
   <nav class="nav">
     <div class="container nav-inner">
-      <a href="#about">À propos</a>
-      <a href="#highlights">Highlights</a>
-      <a href="#summary">Vue d'ensemble</a>
-      <a href="#metrics">Métriques détaillées</a>
-      <a href="#personas">Personas</a>
-      <a href="#workstreams">Workstreams</a>
-      <a href="#next-steps">Prochaines étapes</a>
+      <a href="#scorecard" onclick="amplitude.track('Scorecard Nav Clicked', {section: 'scorecard'})">Scorecard</a>
+      <a href="#personas" onclick="amplitude.track('Scorecard Nav Clicked', {section: 'personas'})">Personas</a>
+      <a href="#workstreams" onclick="amplitude.track('Scorecard Nav Clicked', {section: 'workstreams'})">Workstreams</a>
+      <a href="#next-steps" onclick="amplitude.track('Scorecard Nav Clicked', {section: 'next-steps'})">Prochaines étapes</a>
     </div>
   </nav>
 
-  <!-- About -->
-  <section id="about">
+  <!-- Scorecard: unified KPIs + Insights + Detailed Metrics -->
+  <section id="scorecard">
     <div class="container">
-      <div class="section-label">Contexte</div>
-      <h2>À propos de ce dashboard</h2>
-      <div class="intro-card">
-        <p>Ce tableau de bord est le fruit de <strong>3 mois de collaboration</strong> entre Amplitude et vos équipes. Il a été conçu pour synthétiser les principaux enseignements issus de notre travail commun jusqu'à présent, offrant à la fois une <strong>vue rétrospective sur 2025</strong> et un <strong>premier regard sur les tendances émergentes de 2026</strong>.</p>
-        <p>Par souci de clarté et de concision, ce dashboard se concentre sur les insights clés à fort impact business. Le détail des travaux réalisés, les chantiers en cours, les sujets ouverts (notamment l'optimisation de l'AB Testing) ainsi que les échanges en cours avec vos équipes ne sont pas couverts ici, mais sont consultables dans <a href="https://app.amplitude.com/analytics/canalplus/space/xn7kqp64/all" target="_blank" style="color: var(--accent); font-weight: 600;">l'espace Amplitude dédié</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Executive Highlights -->
-  <section id="highlights">
-    <div class="container">
-      <div class="section-label">Executive Highlights</div>
-      <h2>🎯 Vue d'ensemble</h2>
+      <div class="section-label">Scorecard</div>
+      <h2>Key Insights</h2>
 
       <!-- Top KPIs -->
       <div class="kpi-grid">
@@ -754,82 +616,9 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Summary Grid -->
-  <section id="summary">
-    <div class="container">
-      <div class="section-label">Scorecard</div>
-      <h2>Summary Grid</h2>
-
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Acquisition</th>
-            <th>Monétisation</th>
-            <th>Rétention</th>
-            <th>Conversion</th>
-            <th>Santé Technique</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="category-cell">KPIs clés</td>
-            <td>
-              <span class="badge green">●</span><br>
-              SEO = 3ème canal d'acquisition<br>
-              <span style="color: var(--text-secondary); font-size: 12px;">€341K rev. 90 derniers jours</span>
-            </td>
-            <td>
-              <span class="badge green">●</span><br>
-              26,2M€ revenus VOD<br>
-              34,1% conversion page VOD
-            </td>
-            <td>
-              <span class="badge orange">●</span><br>
-              12,6% rétention 3 mois prospects FR<br>
-              <span style="color: var(--text-secondary); font-size: 12px;">+39pts avec achat VOD</span>
-            </td>
-            <td>
-              <span class="badge orange">●</span><br>
-              17,0M€ revenus abo 2025<br>
-              26,5% propension globale
-            </td>
-            <td>
-              <span class="badge red">●</span><br>
-              ~173K€/an revenus perdus<br>
-              <span style="color: var(--text-secondary); font-size: 12px;">Erreurs paiement 2025</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="category-cell">Tendance 2026</td>
-            <td>Top genres: Sport, Cinéma, Séries, Divertissement, Actualités</td>
-            <td>VOD = accélérateur de rétention confirmé</td>
-            <td>VOD buyers: 50,9% vs non-buyers: 11,9%</td>
-            <td>Cycle allongé: 41 sessions (+30% vs 2025)</td>
-            <td>Jan 2026: ~11,6K/mois<br><span style="color: var(--green); font-size: 12px;">Légère amélioration vs déc. 2025</span></td>
-          </tr>
-          <tr>
-            <td class="category-cell">Commentaire</td>
-            <td style="color: var(--text-secondary); font-size: 13px;">—</td>
-            <td style="color: var(--text-secondary); font-size: 13px;">Levier de fidélisation sous-exploité</td>
-            <td style="color: var(--text-secondary); font-size: 13px;">—</td>
-            <td style="color: var(--text-secondary); font-size: 13px;">~10K "chercheurs perdus" à 13,6% — opportunité quick-win</td>
-            <td style="color: var(--text-secondary); font-size: 13px;">5 258 prospects bloqués (~5× la moyenne)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Detailed Metrics -->
-  <section id="metrics">
-    <div class="container">
-      <div class="section-label">Métriques</div>
-      <h2>Detailed Metrics</h2>
-
+      <!-- Detailed Metrics -->
+      <div class="subsection-title">Métriques détaillées</div>
       <table class="data-table">
         <thead>
           <tr>
@@ -1096,12 +885,12 @@
           <tr>
             <td class="metric-cell" style="font-weight: 700;">A/B test exposition live en onboarding</td>
             <td><span class="status-badge recommended">Recommended</span></td>
-            <td>Hypothèse: exposer les prospects au live dès la 1ère session augmente la propension à l'abonnement. À valider via Amplitude Experiment ou Guides & Surveys.</td>
+            <td>Hypothèse: exposer les prospects au live dès la 1ère session augmente la propension à l'abonnement. À valider via Amplitude Experiment.</td>
           </tr>
           <tr>
             <td class="metric-cell" style="font-weight: 700;">Nudge premier achat VOD</td>
             <td><span class="status-badge recommended">Recommended</span></td>
-            <td>Hypothèse: promotion VOD dans les 7 premiers jours améliore la rétention même via Guides & Surveys. À tester.</td>
+            <td>Hypothèse: promotion VOD dans les 7 premiers jours améliore la rétention. À tester.</td>
           </tr>
         </tbody>
       </table>
@@ -1112,7 +901,7 @@
   <section id="next-steps">
     <div class="container">
       <div class="section-label">Recommandations</div>
-      <h2>🔮 Prochaines étapes recommandées</h2>
+      <h2>Prochaines étapes recommandées</h2>
 
       <div class="timeline">
         <div class="timeline-group">
@@ -1174,7 +963,7 @@
   <!-- Footer -->
   <div class="footer">
     <div class="container">
-      Canal+ | PSP Engagement Scorecard Generated February 2026 | Amplitude Professional Services
+      Canal+ myCANAL — PSP Engagement Scorecard · Amplitude Professional Services
     </div>
   </div>
 
